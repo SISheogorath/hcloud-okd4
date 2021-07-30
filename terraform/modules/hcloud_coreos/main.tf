@@ -6,7 +6,7 @@ resource "hcloud_server" "server" {
   keep_disk   = var.keep_disk
   ssh_keys    = var.ssh_keys
   user_data   = data.template_file.ignition_config[count.index].rendered
-  location    = var.location
+  location    = var.locations[count.index %  length(var.locations)]
   labels      = var.labels
   backups     = var.backups
   firewall_ids = var.firewall_ids

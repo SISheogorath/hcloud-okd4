@@ -15,7 +15,6 @@ module "ignition" {
 module "bootstrap" {
   source          = "./modules/hcloud_coreos"
   instance_count  = var.bootstrap == true ? 1 : 0
-  location        = var.location
   name            = "bootstrap"
   dns_domain      = var.dns_domain
   dns_zone_id     = var.dns_zone_id
@@ -30,7 +29,6 @@ module "bootstrap" {
 module "master" {
   source          = "./modules/hcloud_coreos"
   instance_count  = var.replicas_master
-  location        = var.location
   name            = "master"
   dns_domain      = var.dns_domain
   dns_zone_id     = var.dns_zone_id
@@ -53,7 +51,6 @@ module "master" {
 module "worker" {
   source          = "./modules/hcloud_coreos"
   instance_count  = var.replicas_worker
-  location        = var.location
   name            = "worker"
   dns_domain      = var.dns_domain
   dns_zone_id     = var.dns_zone_id
